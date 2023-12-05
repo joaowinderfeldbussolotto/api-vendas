@@ -1,11 +1,13 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 import 'express-async-errors';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
 import { errors } from 'celebrate';
+require('dotenv').config();
 
 const app = express();
 

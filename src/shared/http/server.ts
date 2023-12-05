@@ -7,12 +7,15 @@ import routes from './routes';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
 import { errors } from 'celebrate';
+import uploadConfig from '@config/upload';
 require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+// route to get users avatar
+app.use('/files', express.static(uploadConfig.directory));
 
 app.use(routes);
 app.use(errors());

@@ -2,6 +2,7 @@ import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import Product from '../typeorm/entities/Product';
 import ProductRepository from '../typeorm/repositories/ProductsRepository';
+import ProductCacheService from './ProductCacheService';
 
 interface IRequest {
   name: string;
@@ -22,6 +23,8 @@ class CreateProductService {
       price,
       quantity,
     });
+
+    await ProductCacheService.invalidate();
 
     await productsRepository.save(product);
 

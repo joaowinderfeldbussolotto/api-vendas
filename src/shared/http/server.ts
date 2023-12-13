@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import 'dotenv/config';
 import 'express-async-errors';
+import { pagination } from 'typeorm-pagination';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
@@ -14,6 +15,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(pagination);
 // route to get users avatar
 app.use('/files', express.static(uploadConfig.directory));
 
